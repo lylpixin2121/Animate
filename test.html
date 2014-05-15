@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animate</title>
+	<style>
+	.aa {position: absolute;top: 20%;background: #ffe88b;-webkit-transform: translateZ(0);padding: 5px;}
+	#bb {background: #c698ff;left: 50px;top: 10%;}
+	</style>
+</head>
+<body>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
+	<div id="bb" class="aa">‘我要改变世界！’余斌严肃的说道</div>	
+</body>
+<script src="animate.js"></script>
+<script src="tween.js"></script>
+<script>
+[].forEach.call(document.getElementsByClassName('aa'),function(el){
+	el.style.top = 200 + Math.random() * 200 + 'px';
+	el.style.left = 100 + Math.random() * 200 + 'px';
+});
+Animate(document.getElementsByClassName('aa'),{
+	width: 120,
+	height: 200,
+	left: 500,
+	top: 200
+},500);
+Animate(document.getElementById('bb'),{
+	width: 100,
+	height: 300,
+	left: 200,
+	top: 250
+},500,function(){
+	console.log('动画加载完成')
+})
+</script>
+</html>
