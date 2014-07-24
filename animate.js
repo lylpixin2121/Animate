@@ -82,7 +82,7 @@
 				// s = Easing.Back.InOut(step) * (props - s0) + s0;
 				// s = Easing.genius(step) * (s1 - s0) + s0;
 				
-				els._movieTimmer = requestAnimationFrame(calc);
+				els._movieTimmer = requestAnimationFrame(calc); 
 			}
 		}
 		calc();
