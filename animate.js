@@ -15,18 +15,25 @@
 		var arg = [].slice.call(arguments);
 		FX.process(arg);
 	}
+	Animate.stop = function(el) {
+		cancelAnimationFrame(el._movieTimmer)
+	}
 	function FX(config){
 		//  创建默认值实例
 		var el = config.el;
 		var _props = {};
 		var props = config.props;
+		var getStyle = function(el,property){
+			return el.currentStyle ? el.currentStyle.getAttribute(property) : window.getComputedStyle(el,null).getPropertyValue(property)
+		}
 		_props['style'] = el.style;
-		if(window.getComputedStyle(el).getPropertyValue('display') == 'none'){el.style.display = 'block'};
+		if(getStyle(el,'display') == 'none'){el.style.display = 'block'};
 		for(var i in props){
 			if(props.hasOwnProperty(i)){
+				var def = 0;
 				if(i == 'width' || i == 'height') {def = 1}; //flash?
-				_props[i] = parseInt(window.getComputedStyle(el).getPropertyValue(i),10) || def;
-				def = 0;
+				_props[i] = parseInt(getStyle(el,i),10) || def;
+				
 			}
 		}
 		return _props;
@@ -56,7 +63,7 @@
 					}
 					_props['style'].cssText += s;
 				})
-				cancelAnimationFrame(timmer);
+				cancelAnimationFrame(els._movieTimmer);
 				queue = []; //清除队列
 				callback.call(els);
 				// Q.checkQueue(Q.queue);
@@ -65,7 +72,7 @@
 					for(var i in props){
 						if(props.hasOwnProperty(i)){
 							// 优先级。。。。
-							s += i + ':' + (Easing.Back.InOut(step) * (props[i] - _props[i]) + _props[i]) + 'px;'
+							s += i + ':' + (Easing.genius(step) * (props[i] - _props[i]) + _props[i]) + 'px;'
 						}
 					}
 					_props['style'].cssText += s;
@@ -75,7 +82,7 @@
 				// s = Easing.Back.InOut(step) * (props - s0) + s0;
 				// s = Easing.genius(step) * (s1 - s0) + s0;
 				
-				timmer = requestAnimationFrame(calc);
+				els._movieTimmer = requestAnimationFrame(calc);
 			}
 		}
 		calc();
