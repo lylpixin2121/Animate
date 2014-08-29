@@ -4,42 +4,42 @@
 	<meta charset="UTF-8">
 	<title>Animate</title>
 	<style>
-	.aa {position: absolute;top: 20%;background: #ffe88b;-webkit-transform: translateZ(0);padding: 5px;}
+	div {margin: 0 auto;position: absolute;top: 20%;background: #ffe88b;-webkit-transform: translateZ(0);padding: 5px;opacity: 0;filter: alpha(opacity=0);}
 	#bb {background: #c698ff;left: 50px;top: 10%;}
 	</style>
 </head>
 <body>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div class="aa">‘我要改变世界！’余斌严肃的说道</div>
-	<div id="bb" class="aa">‘我要改变世界！’余斌严肃的说道</div>	
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div>‘我要改变世界！’余斌严肃的说道</div>
+	<div id="bb">‘我要改变世界！’余斌严肃的说道</div>	
 </body>
 <script src="animate.js"></script>
-<script src="tween.js"></script>
 <script>
-[].forEach.call(document.getElementsByClassName('aa'),function(el){
-	el.style.top = 200 + Math.random() * 200 + 'px';
-	el.style.left = 100 + Math.random() * 200 + 'px';
-});
-Animate(document.getElementsByClassName('aa'),{
+var doms = document.getElementsByTagName('div');
+
+for(var i = 0,l = doms.length;i < l;i++){
+	var el = doms[i];
+	el.style.width = 20 + Math.random() * 40 + 'px';
+	el.style.height = 50 + Math.random() * 20 + 'px';
+	el.style.top = 20 + Math.random() * 40 + 'px';
+	el.style.left = 500 + Math.random() * 20 + 'px';
+};
+Animate(doms,{
 	width: 120,
 	height: 200,
 	left: 500,
-	top: 200
-},500);
-Animate(document.getElementById('bb'),{
-	width: 100,
-	height: 300,
-	left: 200,
-	top: 250
-},500,function(){
-	console.log('动画加载完成')
+	top: 200,
+	'margin-left': 20,
+	opacity: 1
+},1000,'ease-out',function(){
+	alert('done')
 })
 </script>
 </html>
